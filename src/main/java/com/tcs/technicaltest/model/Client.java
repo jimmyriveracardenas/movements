@@ -16,6 +16,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -30,6 +33,7 @@ public class Client {
 
     @OneToOne
     @JoinColumn(name = "persona_id", nullable = false, unique = true)
+    @JsonManagedReference("person-client")
     private Person person;
 
     @Column(name = "contrasena", nullable = false)
@@ -39,5 +43,6 @@ public class Client {
     private Boolean status;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    @JsonManagedReference("client-accounts")
     private List<Account> accounts;
 }

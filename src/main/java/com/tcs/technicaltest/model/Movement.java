@@ -2,6 +2,9 @@ package com.tcs.technicaltest.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -40,6 +43,7 @@ public class Movement {
 
     @ManyToOne
     @JoinColumn(name = "numero_cuenta", nullable = false)
+    @JsonBackReference("account-movements")
     private Account account;
 }
 

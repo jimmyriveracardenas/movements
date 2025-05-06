@@ -1,5 +1,7 @@
 package com.tcs.technicaltest.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,6 +44,7 @@ public class Person {
     private String phone;
 
     @OneToOne(mappedBy = "person")
+    @JsonBackReference("person-client")
     private Client client;
     
 }

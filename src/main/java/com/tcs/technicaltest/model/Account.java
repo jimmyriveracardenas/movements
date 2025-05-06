@@ -2,6 +2,10 @@ package com.tcs.technicaltest.model;
 
 import java.math.BigDecimal;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -36,8 +40,10 @@ public class Account {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
+    @JsonBackReference("client-accounts")
     private Client client;
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    @JsonManagedReference("account-movements")
     private List<Movement> movements;
 }
